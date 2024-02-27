@@ -1,0 +1,78 @@
+<?php
+require 'config.php';
+if(!empty($_SESSION["email"])){
+    header("Location: index.php");
+}
+if(isset($_POST["submit"])){
+    $name = $_POST["name"];
+    $student_id = $_POST["studentid"];
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $dept = $_POST["dept"];
+    $password = $_POST["password"];
+    $confirmPassword = $_POST["confirmpassword"];
+    $duplicate = mysqli_query($connection, "SELECT * FROM login WHERE username = '$username' OR email = '$email'");
+    if(mysqli_num_rows($duplicate) > 0){
+        echo "<script> alert('Username or Email is already taken'); </script>";
+    }
+    else {
+        if($password == $confirmPassword){
+            $accountQuery = "INSERT INTO account VALUES('$email','$password','student')";
+            mysqli_query($connection, $accountQuery);
+            $query = "INSERT INTO login VALUES('$student_id','$name','$username','$email','$password')";
+            mysqli_query($connection, $query);
+            //$deptQuery = "INSERT INTO department VALUES('$dept','')";
+            $studentQuery = "INSERT INTO student VALUES('$student_id','$name','$email','$dept')";
+            //mysqli_query($connection, $deptQuery);
+            mysqli_query($connection, $studentQuery);
+            echo "<script> alert('Registration successful'); </script>";
+        }
+        else {
+            echo "<script> alert('Passwords do not match'); </script>";
+        }
+    }
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Registration</title>
+</head>
+<body>
+
+<h2> Registration </h2>
+<form class="" action="" method="post">
+
+    <label for="name"> Name: </label>
+    <input type="text" name="name" id="name" required value=""> <br>
+
+    <label for="studentid"> Student ID: </label>
+    <input type="text" name="studentid" id="studentid" required value=""> <br>
+
+    <label for="dept"> Department: </label>
+    <input type="text" name="dept" id="dept" required value=""> <br>
+
+    <label for="username"> Username: </label>
+    <input type="text" name="username" id="username" required value=""> <br>
+
+    <label for="email"> Email: </label>
+    <input type="text" name="email" id="email" required value=""> <br>
+
+    <label for="password"> Password: </label>
+    <input type="text" name="password" id="password" required value=""> <br>
+
+    <label for="confirmpassword"> Confirm Password: </label>
+    <input type="text" name="confirmpassword" id="confirmpassword" required value=""> <br>
+
+    <button type="submit" name="submit"> Register </button>
+</form>
+<br>
+
+<a href="login.php"> Login </a>
+
+</body>
+</html>
