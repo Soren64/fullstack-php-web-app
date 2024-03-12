@@ -9,10 +9,15 @@ if(isset($_POST["submit"])){
     $result = mysqli_query($connection, "SELECT * FROM account WHERE email = '$email'");
     $row = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0){
-        if ($password == $row["password"]){
+        if ($password == $row["password"] && $row["type"] == 'student'){
             $_SESSION["login"] = true;
             $_SESSION["email"] = $row["email"];
             header("Location: index.php");
+        }
+        else if ($password == $row["password"] && $row["type"] == 'instructor'){
+            $_SESSION["login"] = true;
+            $_SESSION["email"] = $row["email"];
+            header("Location: instructIndex.php");
         }
         else {
             echo "<script> alert('Wrong password'); </script>";

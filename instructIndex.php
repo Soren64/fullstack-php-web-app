@@ -3,7 +3,7 @@ require 'config.php';
 if(!empty($_SESSION["email"])){
     $email = $_SESSION["email"];
     //$result = mysqli_query($connection, "SELECT * FROM login WHERE id = $id");
-    $studentResult = mysqli_query($connection, "SELECT * FROM student WHERE email = '$email'");
+    $studentResult = mysqli_query($connection, "SELECT * FROM instructor WHERE email = '$email'");
     $row = mysqli_fetch_assoc($studentResult);
 }
 else {
@@ -20,15 +20,14 @@ else {
 </head>
 <body>
 
-<h1> Welcome <?php echo $row["name"]; ?> </h1>
+<h1> Welcome <?php echo $row["instructor_name"]; ?> </h1>
 
 <h3> Your email: <?php echo $row["email"] ?> </h3>
-<h3> Your student ID: <?php echo $row["student_id"] ?> </h3>
+<h3> Your instructor ID: <?php echo $row["instructor_id"] ?> </h3>
 <h3> Your department: <?php echo $row["dept_name"] ?> </h3>
 
 
-<a href="courseList.php"> View Courses </a> <br>
-<a href="updateDept.php"> Update Department </a> <br>
+<a href="courseRecord.php"> View Course Records </a> <br>
 <a href="updateEmail.php"> Update Email Address </a> <br>
 <a href="logout.php"> Logout </a> <br>
 
