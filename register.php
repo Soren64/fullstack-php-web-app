@@ -6,21 +6,21 @@ if(!empty($_SESSION["email"])){
 if(isset($_POST["submit"])){
     $name = $_POST["name"];
     $student_id = $_POST["studentid"];
-    $username = $_POST["username"];
+    //$username = $_POST["username"];
     $email = $_POST["email"];
     $dept = $_POST["dept"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmpassword"];
-    $duplicate = mysqli_query($connection, "SELECT * FROM login WHERE username = '$username' OR email = '$email'");
+    $duplicate = mysqli_query($connection, "SELECT * FROM account WHERE email = '$email'");
     if(mysqli_num_rows($duplicate) > 0){
-        echo "<script> alert('Username or Email is already taken'); </script>";
+        echo "<script> alert('Email is already taken'); </script>";
     }
     else {
         if($password == $confirmPassword){
             $accountQuery = "INSERT INTO account VALUES('$email','$password','student')";
             mysqli_query($connection, $accountQuery);
-            $query = "INSERT INTO login VALUES('$student_id','$name','$username','$email','$password')";
-            mysqli_query($connection, $query);
+            //$query = "INSERT INTO login VALUES('$student_id','$name','$username','$email','$password')";
+            //mysqli_query($connection, $query);
             //$deptQuery = "INSERT INTO department VALUES('$dept','')";
             $studentQuery = "INSERT INTO student VALUES('$student_id','$name','$email','$dept')";
             //mysqli_query($connection, $deptQuery);
@@ -56,8 +56,8 @@ if(isset($_POST["submit"])){
     <label for="dept"> Department: </label>
     <input type="text" name="dept" id="dept" required value=""> <br>
 
-    <label for="username"> Username: </label>
-    <input type="text" name="username" id="username" required value=""> <br>
+    <!--<label for="username"> Username: </label>
+    <input type="text" name="username" id="username" required value=""> <br>-->
 
     <label for="email"> Email: </label>
     <input type="text" name="email" id="email" required value=""> <br>

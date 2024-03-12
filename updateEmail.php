@@ -14,7 +14,7 @@ if(isset($_POST["submit"])){
     }
     else {
         $updateStudentQuery = mysqli_query($connection, "UPDATE student SET email = '$newEmail' WHERE email = '$oldEmail'");
-        $updateLoginQuery = mysqli_query($connection, "UPDATE login SET email = '$newEmail' WHERE email = '$oldEmail'");
+        //$updateLoginQuery = mysqli_query($connection, "UPDATE login SET email = '$newEmail' WHERE email = '$oldEmail'");
         $updateAccountQuery = mysqli_query($connection, "UPDATE account SET email = '$newEmail' WHERE email = '$oldEmail'");
         echo "<script> alert('Email changed successfully'); </script>";
     }
