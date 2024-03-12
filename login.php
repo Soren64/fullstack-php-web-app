@@ -19,6 +19,11 @@ if(isset($_POST["submit"])){
             $_SESSION["email"] = $row["email"];
             header("Location: instructIndex.php");
         }
+        else if ($password == $row["password"] && $row["type"] == 'admin'){
+            $_SESSION["login"] = true;
+            $_SESSION["email"] = $row["email"];
+            header("Location: adminIndex.php");
+        }
         else {
             echo "<script> alert('Wrong password'); </script>";
         }

@@ -1,0 +1,32 @@
+<?php
+require 'config.php';
+if(!empty($_SESSION["email"])){
+    $email = $_SESSION["email"];
+    //$studentResult = mysqli_query($connection, "SELECT * FROM instructor WHERE email = '$email'");
+    //$row = mysqli_fetch_assoc($studentResult);
+}
+else {
+    header("Location: login.php");
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Index</title>
+</head>
+<body>
+
+<!--<h1> Welcome <?php echo $row["instructor_name"]; ?> </h1>-->
+<h1> Welcome Admin </h1>
+
+<!--<h3> Your email: <?php echo $row["email"] ?> </h3>-->
+
+
+<a href="assignTA.php"> Assign Teaching Assistants </a> <br>
+<a href="logout.php"> Logout </a> <br>
+
+</body>
+</html>
