@@ -1,3 +1,4 @@
 <?php
-session_start();
-$connection = mysqli_connect("localhost", "root","","DB2");
+    session_start();
+    $connection = mysqli_connect("localhost", "root","","DB2");
+?>
