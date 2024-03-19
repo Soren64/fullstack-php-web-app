@@ -82,6 +82,7 @@
         }
         ?>
         <input type="submit" value="Enroll">
+	<a href="instructIndex.php"> Return </a> <br>    
     </form>
 </body>
 </html>
