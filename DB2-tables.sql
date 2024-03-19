@@ -125,7 +125,7 @@ create table advise
 create table TA
 	(student_id		varchar(10),
 	 course_id		varchar(8),
-	 section_id		varchar(8), 
+	 section_id		varchar(10), 
 	 semester		varchar(6),
 	 year			numeric(4,0),
 	 primary key (student_id, course_id, section_id, semester, year),
@@ -139,7 +139,7 @@ create table TA
 create table masterGrader
 	(student_id		varchar(10),
 	 course_id		varchar(8),
-	 section_id		varchar(8), 
+	 section_id		varchar(10), 
 	 semester		varchar(6),
 	 year			numeric(4,0),
 	 primary key (student_id, course_id, section_id, semester, year),
@@ -153,7 +153,7 @@ create table masterGrader
 create table undergraduateGrader
 	(student_id		varchar(10),
 	 course_id		varchar(8),
-	 section_id		varchar(8), 
+	 section_id		varchar(10), 
 	 semester		varchar(6),
 	 year			numeric(4,0),
 	 primary key (student_id, course_id, section_id, semester, year),
@@ -167,7 +167,7 @@ create table undergraduateGrader
 create table take
 	(student_id		varchar(10), 
 	 course_id		varchar(8),
-	 section_id		varchar(8), 
+	 section_id		varchar(10), 
 	 semester		varchar(6),
 	 year			numeric(4,0),
 	 grade		    	varchar(2)
@@ -273,6 +273,20 @@ insert into student (student_id, name, email, dept_name) values ('203', 'p3', 'p
 insert into student (student_id, name, email, dept_name) values ('204', 'p4', 'p4@uml.edu', 'Miner School of Computer & Information Sciences');
 insert into student (student_id, name, email, dept_name) values ('205', 'p5', 'p5@uml.edu', 'Miner School of Computer & Information Sciences');
 
+insert into undergraduate (student_id, total_credits, class_standing) values ('01617595', 12, 'Senior');
+insert into undergraduate (student_id, total_credits, class_standing) values ('01000000', 0, 'Senior');
+insert into undergraduate (student_id, total_credits, class_standing) values ('01111111', 0, 'Senior');
+insert into undergraduate (student_id, total_credits, class_standing) values ('001', 3, 'Freshman');
+insert into undergraduate (student_id, total_credits, class_standing) values ('002', 3, 'Freshman');
+insert into undergraduate (student_id, total_credits, class_standing) values ('003', 3, 'Freshman');
+insert into undergraduate (student_id, total_credits, class_standing) values ('004', 3, 'Freshman');
+insert into undergraduate (student_id, total_credits, class_standing) values ('005', 3, 'Sophomore');
+insert into undergraduate (student_id, total_credits, class_standing) values ('006', 3, 'Sophomore');
+insert into undergraduate (student_id, total_credits, class_standing) values ('007', 3, 'Sophomore');
+insert into undergraduate (student_id, total_credits, class_standing) values ('008', 3, 'Junior');
+insert into undergraduate (student_id, total_credits, class_standing) values ('009', 3, 'Junior');
+insert into undergraduate (student_id, total_credits, class_standing) values ('010', 3, 'Senior');
+
 insert into master (student_id, total_credits) values ('101', 0);
 insert into master (student_id, total_credits) values ('102', 0);
 insert into master (student_id, total_credits) values ('103', 0);
@@ -284,3 +298,24 @@ insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defe
 insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('203', 'test', '1-1-2024', '1-1-2024');
 insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('204', 'test', '1-1-2024', '1-1-2024');
 insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('205', 'test', '1-1-2024', '1-1-2024');
+
+insert into classroom (classroom_id, building, room_number, capacity) values ('CR1', 'test', 'test', 0);
+update section set instructor_id = '5', classroom_id = 'CR1', time_slot_id = 'TS1' where course_id = 'COMP1020' and section_id = 'Section101';
+
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP2040', 'Section201', 'Spring', 2024, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP2010', 'Section101', 'Fall', 2023, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP1020', 'Section101', 'Spring', 2024, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP1010', 'Section101', 'Fall', 2023, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01000000', 'COMP2040', 'Section201', 'Spring', 2024, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01111111', 'COMP2040', 'Section201', 'Spring', 2024, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('001', 'COMP1020', 'Section101', 'Spring', 2024, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('002', 'COMP1020', 'Section101', 'Spring', 2024, 'A+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('003', 'COMP1020', 'Section101', 'Spring', 2024, 'A');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('004', 'COMP1020', 'Section101', 'Spring', 2024, 'B');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('005', 'COMP1020', 'Section101', 'Spring', 2024, 'C+');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('006', 'COMP1020', 'Section101', 'Spring', 2024, 'C');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('007', 'COMP1020', 'Section101', 'Spring', 2024, 'C-');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('008', 'COMP1020', 'Section101', 'Spring', 2024, 'C-');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('009', 'COMP1020', 'Section101', 'Spring', 2024, 'D');
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('010', 'COMP1020', 'Section101', 'Spring', 2024, 'F');
+

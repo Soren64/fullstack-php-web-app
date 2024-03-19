@@ -25,7 +25,8 @@ else {
 <!--<h3> Your email: <?php echo $row["email"] ?> </h3>-->
 
 
-<a href="assignTA.php"> Assign Teaching Assistants </a> <br>
+<a href="appointTA.php"> Appoint Teaching Assistants </a> <br>
+<a href="appointAdvisor.php"> Appoint PhD Student Advisors </a> <br>
 <a href="logout.php"> Logout </a> <br>
 
 </body>

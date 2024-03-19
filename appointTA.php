@@ -7,7 +7,7 @@
 <body>
 
 
-<h1> Assign Teaching Assistants </h1>
+<h1> Appoint Teaching Assistants </h1>
 
 </body>
 </html>
