@@ -3,8 +3,8 @@
     if(!empty($_SESSION["email"])){
         $email = $_SESSION["email"];
         //$result = mysqli_query($connection, "SELECT * FROM login WHERE id = $id");
-        $studentResult = mysqli_query($connection, "SELECT * FROM instructor WHERE email = '$email'");
-        $row = mysqli_fetch_assoc($studentResult);
+        $instructorResult = mysqli_query($connection, "SELECT * FROM instructor WHERE email = '$email'");
+        $row = mysqli_fetch_assoc($instructorResult);
     }
     else {
         header("Location: login.php");

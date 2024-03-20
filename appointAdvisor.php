@@ -33,30 +33,36 @@
         //var_dump(mysqli_num_rows($aQuery));
         //var_dump($redunRow["instructor_id"] == $advisorId);
         if(mysqli_num_rows($phdQuery) == 0){ 
-            echo "<script> alert('Student is not a PhD student'); </script>";
-            header("Location: appointAdvisor.php");
+            echo '<div class="alert">' . 'Student ' . $studentName . ' is not a PhD student' . '</div>';
+            //echo "<script> alert('Student is not a PhD student'); </script>";
+            //header("Location: appointAdvisor.php");
 
         }
         else if (mysqli_num_rows($aQuery) >= 2){
-            echo "<script> alert('Advisor is already assigned to two students')";
-            header("Location: appointAdvisor.php");
+            echo '<div class="alert">' . 'Advisor with ID ' . $advisorId . ' is already assigned to two students' . '</div>';
+            //echo "<script> alert('Advisor is already assigned to two students')";
+            //header("Location: appointAdvisor.php");
 
         }
-        else if ($redunRow["instructor_id"] == $advisorId){
-            echo "<script> alert('Advisor is already assigned to this student')";
-            header("Location: appointAdvisor.php");
+        else if ($redunRow["instructor_id"] == $advisorId){ // Might be an error with this check
+            echo '<div class="alert">' . 'Advisor with ID ' . $advisorId . ' is already assigned to this student' . '</div>';
+            //echo "<script> alert('Advisor is already assigned to this student')";
+            //header("Location: appointAdvisor.php");
         }
         else if (mysqli_num_rows($phdQuery) > 0 && mysqli_num_rows($aQuery) < 2 && $redunRow["instructor_id"] != $advisorId){
             if (empty($end)){
                 $insertAdvisor = "INSERT INTO advise VALUES('$advisorId', '$sId', '$start', NULL)";
                 mysqli_query($connection, $insertAdvisor);
-                echo "<script> alert('Advisor assigned successfully')";
-                header("Location: instructIndex.php");        }
+                echo '<div class="msg">' . 'Advisor with ID ' . $advisorId . ' successfully assigned to student ' . $studentName . '</div>';
+                //echo "<script> alert('Advisor assigned successfully')";
+                //header("Location: instructIndex.php");        
+            }
             else if (!empty($end)){
                 $insertAdvisor = "INSERT INTO advise VALUES('$advisorId','$sId','$start', '$end')";
                 mysqli_query($connection, $insertAdvisor);
-                echo "<script> alert('Advisor assigned successfully')";
-                header("Location: instructIndex.php");
+                echo '<div class="msg">' . 'Advisor with ID ' . $advisorId . ' successfully assigned to student ' . $studentName . '</div>';
+                //echo "<script> alert('Advisor assigned successfully')";
+                //header("Location: instructIndex.php");
             }    
         }  
     }
@@ -93,7 +99,13 @@
         
         
         
+        <a href="instructIndex.php"> Go Back </a> <br>
         <a href="logout.php"> Logout </a> <br>
 
     </body>
+
+    <style>
+    	.alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
+		.msg {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#58d68d;}
+	</style>
 </html>
