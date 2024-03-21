@@ -86,7 +86,7 @@
 	    }           
             
             
-	    if (checkPrerequisites($conn, $userId, $courseId)) {
+	    if (checkPrerequisites($connection, $userId, $courseId)) {
         	    //User meets prerequisites, proceed with enrollment
         	    
         	    //Obtain userID
