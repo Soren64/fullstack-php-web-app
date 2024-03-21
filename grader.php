@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Grader</title>
+</head>
+<body>
+<?php
+
+if (isset($_POST['submit'])) {
+    $course_id = $_POST['course_id'];
+    $section_id = $_POST['section_id'];
+    $grader_id = $_POST['grader_id'];
+    $year = $_POST['year'];
+    $semester = $_POST['semester'];
+
+    //Validate the grader's grade
+    $grade_query = "SELECT grade FROM take WHERE course_id = '$course_id' AND student_id = '$grader_id'";
+    $grade_result = mysqli_query($connection, $grade_query);
+    $grade_row = mysqli_fetch_assoc($grade_result);
+
+    if ($grade_row['grade'] === 'A' || $grade_row['grade'] === '-A') {
+        //Check roster size
+        $roster_query = "SELECT COUNT(*) AS roster_size FROM take WHERE section_id = '$section_id'";
+        $roster_result = mysqli_query($connection, $roster_query);
+        $roster_row = mysqli_fetch_assoc($roster_result);
+        $roster_size = (int)$roster_row['roster_size'];
+
+        if ($roster_size >= 5 && $roster_size <= 10) {
+            //Check if the student is an undergrad
+            $undergrad_query = "SELECT * FROM undergraduate WHERE student_id = '$grader_id'";
+            $undergrad_result = mysqli_query($connection, $undergrad_query);
+
+            if (mysqli_num_rows($undergrad_result) > 0) {
+                //Student is an undergrad, add them to undergraduateGrader table
+                $insert_query = "INSERT INTO undergraduateGrader (student_id, course_id, section_id, semester, year) VALUES ('$grader_id', '$course_id', '$section_id', '$semester', '$year')";
+                mysqli_query($connection, $insert_query);
+                echo "Undergrad grader assigned successfully!";
+            } else {
+                //Check if the student is a master
+                $master_query = "SELECT * FROM master WHERE student_id = '$grader_id'";
+                $master_result = mysqli_query($connection, $master_query);
+                
+                if (mysqli_num_rows($master_result) > 0) {
+                    //Student is a master, add them to masterGrader table
+                    $insert_query = "INSERT INTO masterGrader (student_id, course_id, section_id, semester, year) VALUES ('$grader_id', '$course_id', '$section_id', '$semester', '$year')";
+                    mysqli_query($connection, $insert_query);
+                    echo "Master grader assigned successfully!";
+                } else {
+                    echo "Error: Student must be an undergrad or a master.";
+                }
+            }
+        } else {
+            echo "Error: Roster size must be between 5 and 10 inclusive.";
+        }
+    } else {
+        echo "Error: Grader must have received a grade of 'A' or '-A' in the course.";
+    }
+}
+?>
+
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <label for="course_id">Course ID:</label>
+    <input type="text" name="course_id" id="course_id"><br><br>
+
+    <label for="section_id">Section ID:</label>
+    <input type="text" name="section_id" id="section_id"><br><br>
+
+    <label for="grader_id">Grader ID (Student ID):</label>
+    <input type="text" name="grader_id" id="grader_id"><br><br>
+
+    <label for="year">Year:</label>
+    <input type="text" name="year" id="year"><br><br>
+
+    <label for="semester">Semester:</label>
+    <input type="text" name="semester" id="semester"><br><br>
+
+    <button type="submit" name="submit">Assign Grader</button>
+    <a href="adminIndex.php"> Return </a> <br>     
+</form>
+</body>
+</html>
