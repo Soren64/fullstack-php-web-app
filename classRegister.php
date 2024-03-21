@@ -79,10 +79,10 @@
             		$sql = "SELECT * FROM take WHERE user_id = $userId AND course_id = $prereqId AND grade NOT IN ('F', NULL)";
             		$result = $conn->query($sql);
             		if ($result->num_rows == 0) {
-            			return false; // User has not passed a prerequisite
+            			return false; //User has not passed a prerequisite
             		}
     	    	}
-    		return true; // User has passed all prerequisites
+    		return true; //User has passed all prerequisites
 	    }           
             
             
