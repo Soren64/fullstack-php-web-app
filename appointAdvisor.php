@@ -98,9 +98,19 @@
         <br>
         
         
+        <?php  
+            if($_SESSION["email"] == 'admin@uml.edu')
+            {
+                $return = "adminIndex.php";
+            }
+            else
+            {
+                $return = "instructIndex.php";
+            }
+        ?>
+        <a href=<?=$return?>> Go Back </a> <br>
         
-        <a href="instructIndex.php"> Go Back </a> <br>
-        <a href="logout.php"> Logout </a> <br>
+        <!--<a href="logout.php"> Logout </a> <br>-->
 
     </body>
 

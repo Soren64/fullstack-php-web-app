@@ -7,10 +7,10 @@ if(!empty($_SESSION["email"])){
     $currentId = $row["instructor_id"];
 
     $sql = "SELECT MAX(year) AS max_year, semester
-    FROM section
-    GROUP BY year
-    ORDER BY year DESC, FIELD(semester, 'Spring', 'Summer', 'Fall', 'Winter')
-    LIMIT 1";
+        FROM section
+        GROUP BY year
+        ORDER BY year DESC, FIELD(semester, 'Spring', 'Summer', 'Fall', 'Winter')
+        LIMIT 1";
     $result = mysqli_query($connection, $sql);
     $currRow = $result->fetch_assoc();
     $curSem = $currRow["semester"];
@@ -54,6 +54,7 @@ else {
             echo $rslt["course_id"] . "<br />";
         }
         ?>
+        <!--Doesn't seem to be working without a valid past course-->
         <h3> Current Students: </h3>
         <?php
         while ($rslt = mysqli_fetch_assoc($sectionQuery)){

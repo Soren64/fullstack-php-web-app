@@ -13,7 +13,8 @@
         $confirmPassword = $_POST["confirmpassword"];
         $duplicate = mysqli_query($connection, "SELECT * FROM account WHERE email = '$email'");
         if(mysqli_num_rows($duplicate) > 0){
-            echo "<script> alert('Email is already taken'); </script>";
+            echo '<div class="alert">' . 'Email is already taken' . '</div>';
+            //echo "<script> alert('Email is already taken'); </script>";
         }
         else {
             if($password == $confirmPassword){
@@ -25,10 +26,12 @@
                 $studentQuery = "INSERT INTO student VALUES('$student_id','$name','$email','$dept')";
                 //mysqli_query($connection, $deptQuery);
                 mysqli_query($connection, $studentQuery);
-                echo "<script> alert('Registration successful'); </script>";
+                echo '<div class="msg">' . 'Registration successful' . '</div>';
+                //echo "<script> alert('Registration successful'); </script>";
             }
             else {
-                echo "<script> alert('Passwords do not match'); </script>";
+                echo '<div class="alert">' . 'Passwords do not match' . '</div>';
+                //echo "<script> alert('Passwords do not match'); </script>";
             }
         }
     }
@@ -72,4 +75,9 @@
     <a href="login.php"> Login </a>
 
     </body>
+
+    <style>
+    	.alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
+		.msg {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#58d68d;}
+	</style>
 </html>

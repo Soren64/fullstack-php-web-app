@@ -1,7 +1,7 @@
 <?php
     require 'config.php';
     if(!empty($_SESSION["email"])){
-        $email = $_SESSION["email"];
+        //$email = $_SESSION["email"];
         //$studentResult = mysqli_query($connection, "SELECT * FROM instructor WHERE email = '$email'");
         //$row = mysqli_fetch_assoc($studentResult);
     }
@@ -23,6 +23,7 @@
 
 
 
+    <a href="appointGrader.php"> Appoint Graders </a> <br>
     <a href="appointTA.php"> Appoint Teaching Assistants </a> <br>
     <a href="appointAdvisor.php"> Appoint PhD Student Advisors </a> <br>
     <a href="logout.php"> Logout </a> <br>

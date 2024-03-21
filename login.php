@@ -25,11 +25,13 @@
                 header("Location: adminIndex.php");
             }
             else {
-                echo "<script> alert('Wrong password'); </script>";
+                echo '<div class="alert">' . 'Wrong password' . '</div>';
+                //echo "<script> alert('Wrong password'); </script>";
             }
         }
         else {
-            echo "<script> alert('User not registered'); </script>";
+            echo '<div class="alert">' . 'User not registered' . '</div>';
+            //echo "<script> alert('User not registered'); </script>";
         }
     }
 ?>
@@ -55,4 +57,8 @@
         <a href="register.php">Registration</a>
 
     </body>
+
+    <style>
+    	.alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
+	</style>
 </html>

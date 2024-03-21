@@ -7,13 +7,15 @@
 
         $query = mysqli_query($connection, "SELECT * FROM student WHERE email = '$newEmail'");
         if (mysqli_num_rows($query) > 0){
-            echo "<script> alert('Email already taken'); </script>";
+            echo '<div class="alert">' . 'Email already taken' . '</div>';
+            //echo "<script> alert('Email already taken'); </script>";
         }
         else {
             $updateStudentQuery = mysqli_query($connection, "UPDATE student SET email = '$newEmail' WHERE email = '$oldEmail'");
             //$updateLoginQuery = mysqli_query($connection, "UPDATE login SET email = '$newEmail' WHERE email = '$oldEmail'");
             $updateAccountQuery = mysqli_query($connection, "UPDATE account SET email = '$newEmail' WHERE email = '$oldEmail'");
-            echo "<script> alert('Email changed successfully'); </script>";
+            echo '<div class="msg">' . 'Email changed successfully' . '</div>';
+            //echo "<script> alert('Email changed successfully'); </script>";
         }
     }
 ?>
@@ -36,4 +38,9 @@
         <a href="index.php"> Return </a>
 
     </body>
+
+    <style>
+    	.alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
+		.msg {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#58d68d;}
+	</style>
 </html>
