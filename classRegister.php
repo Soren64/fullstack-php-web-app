@@ -6,7 +6,6 @@
 <body>
     <?php
     require 'config.php';
-    
     //Derive the current semester
     $sql = "SELECT MAX(year) AS max_year, semester
             FROM section
@@ -54,6 +53,9 @@
                 while ($row = $result->fetch_assoc()) {
                     echo "<option value='" . $row["section_id"] . "'>" . $row["course_id"] . "</option>";
                 }
+            }
+	    else {
+            	echo "<option disabled selected>No sections available for this semester.</option>";
             }
 
             ?>
@@ -108,12 +110,9 @@
     	    }
         }
         ?>
-        <input type="submit" value="Enroll">
-        <!--<a href="index.php"> Return </a> <br>-->
     </form>
-
-    <!--<a href="index.php"> Go Back </a> <br>-->
-
+<input type="submit" value="Enroll">
+<a href="index.php"> Return </a> <br>
 </body>
 
 <style>
