@@ -68,19 +68,19 @@ if (isset($_POST["submit"])) {
     	$sql = "SELECT * FROM section WHERE section_id = '$sectionId' AND course_id = '$courseId' AND year = " . $row["max_year"] . " AND semester = '" . $row["semester"] . "'";
     	$result = $connection->query($sql);
 
-    	if ($result->num_rows > 0) {
-        	//Section ID is valid for the current semester, check prerequisites
-        	if (checkPrerequisites($connection, $userId, $courseId)) {
-            	//User meets prerequisites, proceed with enrollment
-  	    	$grade = null;
-            	//Enroll the student in the course section
-            	$signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ('$userId', '$courseId', '$sectionId', '$currentSemester', " . $row["max_year"] . ", '$grade')");
-        	} else {
-            	echo "Error: User does not meet prerequisites.";
-        	}
-    	} else {
-        	echo "Error: Invalid section ID for the current semester.";
-    	}
+    		if ($result->num_rows > 0) {
+        		//Section ID is valid for the current semester, check prerequisites
+        		if (checkPrerequisites($connection, $userId, $courseId)) {
+            		//User meets prerequisites, proceed with enrollment
+  	    		$grade = null;
+            		//Enroll the student in the course section
+            		$signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ('$userId', '$courseId', '$sectionId', '$currentSemester', " . $row["max_year"] . ", '$grade')");
+        		} else {
+            			echo "Error: User does not meet prerequisites.";
+        		}
+    		} else {
+        		echo "Error: Invalid section ID for the current semester.";
+    		}
 	} else {
     	echo "Error: Invalid course ID.";
 	}
