@@ -30,7 +30,6 @@
         
         <a href="courseList.php"> View Courses </a> <br>
         <a href="classRegister.php"> Register for Courses </a> <br>
-        <a href="updateDept.php"> Update Department </a> <br>
         <a href="updateEmail.php"> Update Email Address </a> <br>
         <a href="logout.php"> Logout </a> <br>
 

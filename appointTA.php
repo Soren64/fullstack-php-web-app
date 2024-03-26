@@ -5,7 +5,7 @@
 	{
 		$course = $_POST["course"];
 		$section = $_POST["section"];
-		$studentName = $_POST["student"];
+		$studentID = $_POST["student"];
 
 		$sectionNumber = str_ireplace("Section", "", $section);
 
@@ -44,11 +44,11 @@
 		// Check that student is a PhD student and not a TA
 		$phdResult = 0;
 		$taResult = 0;
-		$studentQuery = mysqli_query($connection, "SELECT * FROM student WHERE name = '$studentName'");
+		$studentQuery = mysqli_query($connection, "SELECT * FROM student WHERE student_id = '$studentID'");
 		if (mysqli_num_rows($studentQuery) != 0)
 		{
 			$studentRow = mysqli_fetch_assoc($studentQuery);
-			$studentID = $studentRow["student_id"];
+			$studentName = $studentRow["name"];
 			$phdResult = mysqli_query($connection, "SELECT * FROM PhD WHERE student_id = '$studentID'");
 
 			// Check that the PhD student isn't already a TA
@@ -80,13 +80,21 @@
 		{ 
 			echo '<div class="alert">' . 'Course ' . $course . ' Section ' . $sectionNumber . ' not on offer this semester' . '</div>';
 		}
-		else if ($phdResult && (mysqli_num_rows($phdResult) == 0))
+		else if (!$phdResult)
 		{ 
-			echo '<div class="alert">' . 'Student ' . $studentName . ' is not a PhD student' . '</div>';
+			echo '<div class="alert">' . 'ID#' . $studentID . ' does not belong to a PhD student' . '</div>';
 		}
-		else if ($taResult && (mysqli_num_rows($taResult) > 0))
+		else if (mysqli_num_rows($phdResult) == 0)
 		{
-			echo '<div class="alert">' . 'PhD Student ' . $studentName . ' is already assigned as a TA' . '</div>';
+			echo '<div class="alert">' . 'ID#' . $studentID . ' does not belong to a PhD student' . '</div>';
+		}
+		/*else if (!$taResult)
+		{
+			echo '<div class="alert">' . 'PhD Student ' . $studentName . ' (ID#' . $studentID . ') is already assigned as a TA' . '</div>';
+		}*/
+		else if (mysqli_num_rows($taResult) > 0)
+		{
+			echo '<div class="alert">' . 'PhD Student ' . $studentName . ' (ID#' . $studentID . ') is already assigned as a TA' . '</div>';
 		}
 		else if (mysqli_num_rows($classSizeResult) < 10)
 		{
@@ -97,7 +105,7 @@
 			$insertTAQuery = "INSERT INTO ta
 					VALUES ('$studentID', '$course', '$section', '$currentSemester', '$currentYear')";
 			mysqli_query($connection, $insertTAQuery);
-			echo '<div class="msg">' . 'PhD Student ' . $studentName . ' successfully assigned as a TA to ' . $course . ' Section ' . $sectionNumber . '</div>';
+			echo '<div class="msg">' . 'PhD Student ' . $studentName . ' (ID#' . $studentID . ') successfully assigned as a TA to ' . $course . ' Section ' . $sectionNumber . '</div>';
 		}
 	}
 ?>
@@ -118,7 +126,7 @@
 			<label for="section"> Section: </label>
 			<input type="text" name="section" id="section" required> <br>
 
-			<label for="student"> PhD Student: </label>
+			<label for="student"> PhD Student ID: </label>
 			<input type="text" name="student" id="student" required> <br>
 
 

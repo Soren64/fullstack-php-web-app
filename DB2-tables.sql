@@ -277,7 +277,7 @@ insert into student (student_id, name, email, dept_name) values ('203', 'p3', 'p
 insert into student (student_id, name, email, dept_name) values ('204', 'p4', 'p4@uml.edu', 'Miner School of Computer & Information Sciences');
 insert into student (student_id, name, email, dept_name) values ('205', 'p5', 'p5@uml.edu', 'Miner School of Computer & Information Sciences');
 
-insert into undergraduate (student_id, total_credits, class_standing) values ('01617595', 6, 'Senior');
+insert into undergraduate (student_id, total_credits, class_standing) values ('01617595', 12, 'Senior');
 insert into undergraduate (student_id, total_credits, class_standing) values ('01000000', 0, 'Senior');
 insert into undergraduate (student_id, total_credits, class_standing) values ('01111111', 0, 'Senior');
 insert into undergraduate (student_id, total_credits, class_standing) values ('001', 3, 'Freshman');
@@ -342,11 +342,11 @@ insert into take (student_id, course_id, section_id, semester, year, grade) valu
 insert into take (student_id, course_id, section_id, semester, year, grade) values ('004', 'COMP2040', 'Section201', 'Spring', 2024, NULL);
 insert into take (student_id, course_id, section_id, semester, year, grade) values ('005', 'COMP2040', 'Section201', 'Spring', 2024, NULL);
 
-insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP2040', 'Section201', 'Spring', 2024, NULL);
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP2040', 'Section201', 'Spring', 2024, 'A');
 insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP2010', 'Section101', 'Fall', 2023, 'A');
-insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP1020', 'Section101', 'Spring', 2024, NULL);
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP1020', 'Section101', 'Spring', 2024, 'A');
 insert into take (student_id, course_id, section_id, semester, year, grade) values ('01617595', 'COMP1010', 'Section101', 'Fall', 2023, 'A');
 insert into take (student_id, course_id, section_id, semester, year, grade) values ('01000000', 'COMP2040', 'Section201', 'Spring', 2024, NULL);
 insert into take (student_id, course_id, section_id, semester, year, grade) values ('01111111', 'COMP2040', 'Section201', 'Spring', 2024, NULL);
 
-
+insert into take (student_id, course_id, section_id, semester, year, grade) values ('101', 'COMP2040', 'Section201', 'Spring', 2024, 'A');
