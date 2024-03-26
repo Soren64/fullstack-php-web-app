@@ -110,8 +110,8 @@
     	    }
         }
         ?>
+    <input type="submit" value="Enroll">
     </form>
-<input type="submit" value="Enroll">
 <a href="index.php"> Return </a> <br>
 </body>
 </html>
