@@ -12,7 +12,7 @@ $row = $result->fetch_assoc();
 $currentSemester = $row["semester"] . " " . $row["max_year"];
 
 //Process form submissions
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["submit"])) {
          
   //Derive the current semester
     $sql = "SELECT MAX(year) AS max_year, semester
