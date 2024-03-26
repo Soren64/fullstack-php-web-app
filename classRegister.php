@@ -5,6 +5,7 @@
 </head>
 <body>
     <?php
+    require 'config.php';
     //Derive the current semester
     $sql = "SELECT MAX(year) AS max_year, semester
             FROM section
@@ -28,7 +29,7 @@
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row["id"] . "'>" . $row["name"] . "</option>";
+                    echo "<option value='" . $row["course_id"] . "'>" . $row["course_name"] . "</option>";
                 }
             }
 
