@@ -75,7 +75,12 @@ if (isset($_POST["submit"])) {
   	    		$grade = null;
             		//Enroll the student in the course section
             		$signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ('$userId', '$courseId', '$sectionId', '$currentSemester', " . $row["max_year"] . ", '$grade')");
-        		} else {
+        		if ($signup === TRUE) {
+				echo "Enrollment successful.";
+			} else {
+				echo "Error: Unable to enroll.";
+			}
+			} else {
             			echo "Error: User does not meet prerequisites.";
         		}
     		} else {
