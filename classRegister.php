@@ -13,8 +13,8 @@ $currentSemester = $row["semester"] . " " . $row["max_year"];
 
 //Process form submissions
 if (isset($_POST["submit"])) {
-         
-  //Derive the current semester
+	
+  	//Derive the current semester
     $sql = "SELECT MAX(year) AS max_year, semester
             FROM section
             GROUP BY year
@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
         $sectionId = $_POST['section'];
         $grade = NULL;
 
-            //Check if user meets prereqs
+        //Check if user meets prereqs
 	    function checkPrerequisites($conn, $uId, $cId)
 	    {
             	//Fetch all prerequisite IDs for the given course
@@ -76,18 +76,25 @@ if (isset($_POST["submit"])) {
             		//Enroll the student in the course section
             		$signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ('$userId', '$courseId', '$sectionId', '$currentSemester', " . $row["max_year"] . ", '$grade')");
         			if ($signup === TRUE) {
-					echo "Enrollment successful.";
+					//echo "Enrollment successful.";
+					echo '<div class="msg">' . 'Enrollment successful.' . '</div>';
+
 				} else {
-					echo "Error: Unable to enroll.";
+					//echo "Error: Unable to enroll.";
+					echo '<div class="alert">' . 'Unable to enroll.' . '</div>';
 				}
 			} else {
-            			echo "Error: User does not meet prerequisites.";
+            			//echo "Error: User does not meet prerequisites.";
+						echo '<div class="alert">' . 'User does not meet prerequisites.' . '</div>';
         		}
     		} else {
-        		echo "Error: Invalid section ID for the current semester.";
+        		//echo "Error: Invalid section ID for the current semester.";
+				echo '<div class="alert">' . 'Invalid section ID for the current semester.' . '</div>';
+
     		}
 	} else {
-    	echo "Error: Invalid course ID.";
+    	//echo "Error: Invalid course ID.";
+		echo '<div class="alert">' . 'Invalid course ID.' . '</div>';
 	}
 	
 }
@@ -124,8 +131,14 @@ $result = mysqli_query($connection, $sql);
         <input type="text" name="section" id="section"><br>
         </select>
 	<br>
-        <input type="submit" value="Enroll"> <br>
+        <!--<input type="submit" value="Enroll"> <br>-->
+		<button type="submit" name="submit">Enroll </button>
     </form>
     <a href="index.php">Return</a> <br>
 </body>
+
+<style>
+	.alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
+	.msg {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#58d68d;}
+</style>
 </html>
