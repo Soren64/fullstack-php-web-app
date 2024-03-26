@@ -1,18 +1,47 @@
 <?php
 require 'config.php';
 
+//Derive the current semester (for visual)
+$sql = "SELECT MAX(year) AS max_year, semester
+        FROM section
+        GROUP BY year
+        ORDER BY year DESC, FIELD(semester, 'Spring', 'Summer', 'Fall', 'Winter')
+        LIMIT 1";
+$result = mysqli_query($connection, $sql);
+$row = $result->fetch_assoc();
+$currentSemester = $row["semester"] . " " . $row["max_year"];
+
 //Process form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  //Derive the current semester
+    $sql = "SELECT MAX(year) AS max_year, semester
+            FROM section
+            GROUP BY year
+            ORDER BY year DESC, FIELD(semester, 'Spring', 'Summer', 'Fall', 'Winter')
+            LIMIT 1";
+    $result = mysqli_query($connection, $sql);
+    $row = $result->fetch_assoc();
+    
+        $currentSemester = $row["semester"];
+        
+        // Obtain user ID from the email
+        $userEmail = $_SESSION["email"];
+        $userIDQuery = mysqli_query($connection, "SELECT student_id FROM student WHERE email = '$userEmail'");
+        $userIDResult = mysqli_fetch_assoc($userIDQuery);
+        $userId = $userIDResult['student_id'];
 
-            $courseId = $_POST['course'];
-            $sectionId = $_POST['section'];
+        $courseId = $_POST['course'];
+        $sectionId = $_POST['section'];
+        $grade = NULL;
+
+        
 
             //Check if user meets prereqs
-	    function checkPrerequisites($conn, $userId, $courseId)
+	    function checkPrerequisites($conn, $uId, $cId)
 	    {
             	//Fetch all prerequisite IDs for the given course
-            	$sql = "SELECT prereq_id FROM prereq WHERE course_id = '$courseId'";
+            	$sql = "SELECT prereq_id FROM prereq WHERE course_id = '$cId'";
             	$result = $conn->query($sql);
             	$prereqIds = [];
             	while ($row = $result->fetch_assoc()) {
@@ -22,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     	    	//Check if user has passed all prerequisites
     	    	foreach ($prereqIds as $prereqId) {
-            		$sql = "SELECT * FROM take WHERE student_id = $userId AND course_id = $prereqId AND grade NOT IN ('F', NULL)";
+            		$sql = "SELECT * FROM take WHERE student_id = '$uId' AND course_id = '$prereqId' AND grade NOT IN ('F', NULL)";
             		$result = $conn->query($sql);
             		if ($result->num_rows == 0) {
             			return false; //User has not passed a prerequisite
@@ -32,16 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    }                   
 
 	    if (checkPrerequisites($connection, $userId, $courseId)) {
-
         	    //User meets prerequisites, proceed with enrollment
-
-
-        	    //Obtain userID
-	            $userEmail = $_SESSION["email"];
-	            $userID = mysqli_query($connection, "SELECT student_id FROM student WHERE email = '$userEmail'");
-
         	    $grade = null;
-        	    $signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ($userId, $courseId, $sectionId, " . $row["max_year"] . ", '" . $row["semester"] . "', $grade)");
+        	    // Enroll the student in the course section
+        	    $signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ('$userId', '$courseId', '$sectionId', '$currentSemester', " . $row["max_year"] . ", '$grade')");
+
 
         	    if ($signup === TRUE) {
             		    echo "<p>Enrolled successfully.</p>";
@@ -53,15 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     	    }
         }
 }
-//Derive the current semester
-$sql = "SELECT MAX(year) AS max_year, semester
-        FROM section
-        GROUP BY year
-        ORDER BY year DESC, FIELD(semester, 'Spring', 'Summer', 'Fall', 'Winter')
-        LIMIT 1";
-$result = mysqli_query($connection, $sql);
-$row = $result->fetch_assoc();
-$currentSemester = $row["semester"] . " " . $row["max_year"];
 
 //Fetch courses from the database
 $sql = "SELECT course_id, course_name FROM course";
