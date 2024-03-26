@@ -54,6 +54,9 @@
                     echo "<option value='" . $row["section_id"] . "'>" . $row["course_id"] . "</option>";
                 }
             }
+	    else {
+            	echo "<option disabled selected>No sections available for this semester.</option>";
+            }
 
             ?>
         </select>
