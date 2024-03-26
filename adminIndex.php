@@ -26,6 +26,7 @@
     <a href="appointGrader.php"> Appoint Graders </a> <br>
     <a href="appointTA.php"> Appoint Teaching Assistants </a> <br>
     <a href="appointAdvisor.php"> Appoint PhD Student Advisors </a> <br>
+    <a href="createSection.php"> Create New Section </a> <br>
     <a href="logout.php"> Logout </a> <br>
 
     </body>
