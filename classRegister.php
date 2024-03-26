@@ -72,7 +72,7 @@ if (isset($_POST["submit"])) {
         		//Section ID is valid for the current semester, check prerequisites
         		if (checkPrerequisites($connection, $userId, $courseId)) {
             		//User meets prerequisites, proceed with enrollment
-  	    		$grade = null;
+  	    		$grade = NULL;
             		//Enroll the student in the course section
             		$signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ('$userId', '$courseId', '$sectionId', '$currentSemester', " . $row["max_year"] . ", '$grade')");
         			if ($signup === TRUE) {
