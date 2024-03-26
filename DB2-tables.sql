@@ -297,11 +297,11 @@ insert into master (student_id, total_credits) values ('103', 0);
 insert into master (student_id, total_credits) values ('104', 0);
 insert into master (student_id, total_credits) values ('105', 0);
 
-insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('201', 'test', '1-1-2024', '1-1-2024');
-insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('202', 'test', '1-1-2024', '1-1-2024');
-insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('203', 'test', '1-1-2024', '1-1-2024');
-insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('204', 'test', '1-1-2024', '1-1-2024');
-insert into PhD (student_id, qualifier, proposal_defence_date, dissertation_defence_date) values ('205', 'test', '1-1-2024', '1-1-2024');
+insert into PhD (student_id) values ('201');
+insert into PhD (student_id) values ('202');
+insert into PhD (student_id) values ('203');
+insert into PhD (student_id) values ('204');
+insert into PhD (student_id) values ('205');
 
 insert into classroom (classroom_id, building, room_number, capacity) values ('CR0', 'test', 'test', 0);
 insert into classroom (classroom_id, building, room_number, capacity) values ('CR1', 'SHA', '310', 15);
