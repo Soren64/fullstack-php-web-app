@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Assign Grader</title>
-</head>
-<body>
+
 <?php
 require 'config.php';
 
@@ -35,7 +30,9 @@ if (isset($_POST['submit'])) {
                 // Student is an undergrad, add them to undergraduateGrader table
                 $insert_query = "INSERT INTO undergraduateGrader (student_id, course_id, section_id, semester, year) VALUES ('$grader_id', '$course_id', '$section_id', '$semester', '$year')";
                 mysqli_query($connection, $insert_query);
-                echo "Undergrad grader assigned successfully!";
+                //echo "Undergrad grader assigned successfully!";
+                echo '<div class="msg">' . 'Undergrad grader assigned successfully!' . '</div>';
+
             } else {
                 // Check if the student is a master
                 $master_query = "SELECT * FROM master WHERE student_id = '$grader_id'";
@@ -45,43 +42,59 @@ if (isset($_POST['submit'])) {
                     // Student is a master, add them to masterGrader table
                     $insert_query = "INSERT INTO masterGrader (student_id, course_id, section_id, semester, year) VALUES ('$grader_id', '$course_id', '$section_id', '$semester', '$year')";
                     mysqli_query($connection, $insert_query);
-                    echo "Master grader assigned successfully!";
+                    //echo "Master grader assigned successfully!";
+                    echo '<div class="msg">' . 'Master grader assigned successfully!' . '</div>';
+
                 } else {
-                    echo "Error: Student must be an undergrad or a master.";
+                    //echo "Error: Student must be an undergrad or a master.";
+                    echo '<div class="error">' . 'Student must be an undergrad or a master.' . '</div>';
+
                 }
             }
         } else {
-            echo "Error: Roster size must be between 5 and 10 inclusive.";
+            //echo "Error: Roster size must be between 5 and 10 inclusive.";
+            echo '<div class="error">' . 'Class roster size must be between 5 and 10 (inclusive).' . '</div>';
         }
     } else {
-        echo "Error: Grader must have received a grade of 'A' or '-A' in the course.";
+        //echo "Error: Grader must have received a grade of 'A' or '-A' in the course.";
+        echo '<div class="error">' . 'Grader must have received a grade of \'A\' or \'A-\' in the course.' . '</div>';
     }
 }
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-    <label for="course_id">Course ID:</label>
-    <input type="text" name="course_id" id="course_id"><br><br>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Assign Grader</title>
+    </head>
 
-    <label for="section_id">Section ID:</label>
-    <input type="text" name="section_id" id="section_id"><br><br>
+    <body>
+        <h1> Appoint Graders: </h1>
+        <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+            <label for="course_id">Course ID:</label>
+            <input type="text" name="course_id" id="course_id">
 
-    <label for="grader_id">Grader ID (Student ID):</label>
-    <input type="text" name="grader_id" id="grader_id"><br><br>
+            <label for="section_id">Section ID:</label>
+            <input type="text" name="section_id" id="section_id"><br><br>
 
-    <label for="year">Year:</label>
-    <input type="text" name="year" id="year"><br><br>
+            <label for="grader_id">Grader ID (Student ID):</label>
+            <input type="text" name="grader_id" id="grader_id"><br><br>
 
-    <label for="semester">Semester:</label>
-    <input type="text" name="semester" id="semester"><br><br>
+            <label for="year">Year:</label>
+            <input type="text" name="year" id="year">
 
-    <button type="submit" name="submit">Assign Grader</button><br>
-    <a href="adminIndex.php"> Return </a> <br>     
-</form>
-</body>
+            <label for="semester">Semester:</label>
+            <input type="text" name="semester" id="semester"><br>
 
-<style>
-    .alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
-	.msg {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#58d68d;}
-</style>
+            <button type="submit" name="submit">Assign Grader</button><br>
+        </form>
+
+        <a href="adminIndex.php"> Go Back </a> <br>
+    </body>
+
+    <style>
+        .alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
+        .msg {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#58d68d;}
+    </style>
 </html>

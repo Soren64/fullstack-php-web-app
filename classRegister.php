@@ -5,6 +5,8 @@
 </head>
 <body>
     <?php
+    require 'config.php';
+    
     //Derive the current semester
     $sql = "SELECT MAX(year) AS max_year, semester
             FROM section
@@ -23,12 +25,12 @@
         <select id="course" name="course">
             <?php
             //Fetch courses
-            $sql = "SELECT course_id, course_name FROM course";
-            $result = mysqli_query($connection, $sql);
+            $coursesQuery = "SELECT course_id, course_name FROM course";
+            $result = mysqli_query($connection, $coursesQuery);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row["id"] . "'>" . $row["name"] . "</option>";
+                    echo "<option value='" . $row["course_id"] . "'>" . $row["course_name"] . "</option>";
                 }
             }
 
@@ -44,7 +46,7 @@
 
             
             //Fetch sections for the current semester
-            $sql = "SELECT section_id, course_id FROM section WHERE year = " . $row["max_year"] . " AND semester = '" . $row["semester"] . "' AND course_id = $courseId";
+            $sql = "SELECT section_id, course_id FROM section WHERE year = " . $row["max_year"] . " AND semester = '" . $row["semester"] . "' AND course_id = '$courseId'";
             $result = mysqli_query($connection, $sql);
    
 
@@ -107,8 +109,16 @@
         }
         ?>
         <input type="submit" value="Enroll">
-        <a href="index.php"> Return </a> <br>
+        <!--<a href="index.php"> Return </a> <br>-->
     </form>
+
+    <!--<a href="index.php"> Go Back </a> <br>-->
+
 </body>
+
+<style>
+    .alert {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#ec7063;}
+	.msg {border:1px solid #bbb; padding:5px; margin:10px 0px; background:#58d68d;}
+</style>
 </html>
 

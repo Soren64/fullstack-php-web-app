@@ -97,7 +97,7 @@
 			$insertTAQuery = "INSERT INTO ta
 					VALUES ('$studentID', '$course', '$section', '$currentSemester', '$currentYear')";
 			mysqli_query($connection, $insertTAQuery);
-			echo '<div class="msg">' . 'PhD Student ' . $studentName. ' successfully assigned as a TA to ' . $course . ' Section ' . $sectionNumber . '</div>';
+			echo '<div class="msg">' . 'PhD Student ' . $studentName . ' successfully assigned as a TA to ' . $course . ' Section ' . $sectionNumber . '</div>';
 		}
 	}
 ?>
@@ -127,9 +127,9 @@
 		</form>
 		<br>
 
-		<a href="instructIndex.php"> Go Back </a> <br>
+		
+		<a href="adminIndex.php"> Go Back </a> <br>
 		<a href="logout.php"> Logout </a> <br>
-
 	</body>
 	
 	<style>

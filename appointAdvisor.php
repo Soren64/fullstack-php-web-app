@@ -110,7 +110,7 @@
         ?>
         <a href=<?=$return?>> Go Back </a> <br>
         
-        <!--<a href="logout.php"> Logout </a> <br>-->
+        <a href="logout.php"> Logout </a> <br>
 
     </body>
 

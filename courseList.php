@@ -6,10 +6,10 @@
         $row = mysqli_fetch_assoc($studentQuery);
 
         $sql = "SELECT MAX(year) AS max_year, semester
-        FROM section
-        GROUP BY year
-        ORDER BY year DESC, FIELD(semester, 'Spring', 'Summer', 'Fall', 'Winter')
-        LIMIT 1";
+            FROM section
+            GROUP BY year
+            ORDER BY year DESC, FIELD(semester, 'Spring', 'Summer', 'Fall', 'Winter')
+            LIMIT 1";
         $result = mysqli_query($connection, $sql);
         $currRow = $result->fetch_assoc();
         $curSem = $currRow["semester"];
@@ -17,7 +17,7 @@
 
         $currentId = $row["student_id"];
 
-        $gpaQuery = mysqli_query($connection, "SELECT * FROM take WHERE student_id = '$currentId'");
+        $gpaQuery = mysqli_query($connection, "SELECT * FROM take WHERE student_id = '$currentId' AND grade IS NOT NULL"); // added null check to exclude currently taken courses
 
         $currentTakeQuery = mysqli_query($connection, "SELECT * FROM take WHERE student_id = '$currentId' AND semester = '$curSem' AND year = '$curYear'");
 
