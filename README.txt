@@ -1,4 +1,5 @@
 Authors: Lucca Nelson, Nick Matsuda, Jack Fallon
+Group: 6
 
 Setup: After downloading these files, move this folder into the xampp\htdocs
     directory on your computer. Start Apache and MySQL from the XAMPP control
