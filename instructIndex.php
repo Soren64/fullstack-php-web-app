@@ -29,6 +29,7 @@
 
         <a href="courseRecord.php"> View Course Records </a> <br>
         <a href="updateEmail.php"> Update Email Address </a> <br>
+        <a href="advising.php"> View Advising Portal </a> <br>
         <a href="appointAdvisor.php"> Appoint PhD Student Advisors </a> <br>
         <a href="logout.php"> Logout </a> <br>
 
