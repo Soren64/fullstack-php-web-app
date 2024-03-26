@@ -13,7 +13,7 @@ $currentSemester = $row["semester"] . " " . $row["max_year"];
 
 //Process form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         
   //Derive the current semester
     $sql = "SELECT MAX(year) AS max_year, semester
             FROM section
@@ -34,8 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $courseId = $_POST['course'];
         $sectionId = $_POST['section'];
         $grade = NULL;
-
-        
 
             //Check if user meets prereqs
 	    function checkPrerequisites($conn, $uId, $cId)
@@ -86,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else {
     	echo "Error: Invalid course ID.";
 	}
-	}
+	
 }
 
 //Fetch courses from the database
