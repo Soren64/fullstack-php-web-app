@@ -32,6 +32,9 @@
                     echo "<option value='" . $row["course_id"] . "'>" . $row["course_name"] . "</option>";
                 }
             }
+	    else {
+            	echo "<option disabled selected>No course found for this semester.</option>";
+            }
 
             ?>
         </select>
@@ -55,7 +58,7 @@
                 }
             }
 	    else {
-            	echo "<option disabled selected>No sections available for this semester.</option>";
+            	echo "<option disabled selected>No sections found for this semester.</option>";
             }
 
             ?>
