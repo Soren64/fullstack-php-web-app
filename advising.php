@@ -25,7 +25,7 @@
     
     <body>
         
-        <h1> Welcome <?php echo $row["instructor_name"]; ?> </h1>
+        <h1> Welcome <?php echo $instructorRow["instructor_name"]; ?> </h1>
 
         <h3> Advisees' Course History:  </h3>
         <?php
