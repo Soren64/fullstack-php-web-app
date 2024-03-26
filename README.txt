@@ -1,4 +1,5 @@
 Authors: Lucca Nelson, Nick Matsuda, Jack Fallon
+Group: 6
 
 Setup: After downloading these files, move this folder into the xampp\htdocs
     directory on your computer. Start Apache and MySQL from the XAMPP control
@@ -12,3 +13,6 @@ Setup: After downloading these files, move this folder into the xampp\htdocs
 To Run: Go through the Setup procedure if you have not already. Start Apache
     and MySQL from the XAMPP control panel if you have not already. Open a
     web broser and navigate to "localhost/db2".
+
+Note: Tasks 1-8 were implemented, but NOT tasks 9/10, which were the student 
+implemented features.
