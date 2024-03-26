@@ -74,6 +74,14 @@ if (isset($_POST["submit"])) {
             		//User meets prerequisites, proceed with enrollment
   	    		$grade = NULL;
             		//Enroll the student in the course section
+			//Check if the student is already enrolled in the section
+			$sql = "SELECT * FROM take WHERE student_id = '$userId' AND course_id = '$courseId' AND section_id = '$sectionId'";
+			$result = $connection->query($sql);
+
+			if ($result->num_rows > 0) {
+    				echo '<div class="alert">You are already enrolled in this section.</div>';
+			} else {
+    			//Proceed with the enrollment process
             		$signup = mysqli_query($connection, "INSERT INTO take (student_id, course_id, section_id, semester, year, grade) VALUES ('$userId', '$courseId', '$sectionId', '$currentSemester', " . $row["max_year"] . ", '$grade')");
         			if ($signup === TRUE) {
 					//echo "Enrollment successful.";
@@ -83,6 +91,7 @@ if (isset($_POST["submit"])) {
 					//echo "Error: Unable to enroll.";
 					echo '<div class="alert">' . 'Unable to enroll.' . '</div>';
 				}
+			}
 			} else {
             			//echo "Error: User does not meet prerequisites.";
 						echo '<div class="alert">' . 'User does not meet prerequisites.' . '</div>';
