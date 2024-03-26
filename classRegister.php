@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    function checkPrerequisites($conn, $userId, $courseId)
 	    {
             	//Fetch all prerequisite IDs for the given course
-            	$sql = "SELECT prereq_id FROM prereq WHERE course_id = $courseId";
+            	$sql = "SELECT prereq_id FROM prereq WHERE course_id = '$courseId'";
             	$result = $conn->query($sql);
             	$prereqIds = [];
             	while ($row = $result->fetch_assoc()) {
