@@ -170,8 +170,8 @@ create table take
 	 section_id		varchar(10), 
 	 semester		varchar(6),
 	 year			numeric(4,0),
-	 grade		    	varchar(2)
-		check (grade in ('A+', 'A', 'A-','B+', 'B', 'B-','C+', 'C', 'C-','D+', 'D', 'D-','F')), 
+	 grade		    	varchar(2) DEFAULT NULL,
+		check (grade in ('A+', 'A', 'A-','B+', 'B', 'B-','C+', 'C', 'C-','D+', 'D', 'D-','F', NULL)), 
 	 primary key (student_id, course_id, section_id, semester, year),
 	 foreign key (course_id, section_id, semester, year) references 
 	     section (course_id, section_id, semester, year)
