@@ -49,7 +49,7 @@ if (isset($_POST["submit"])) {
 
     	    	//Check if user has passed all prerequisites
     	    	foreach ($prereqIds as $prereqId) {
-            		$sql = "SELECT * FROM take WHERE student_id = '$uId' AND course_id = '$prereqId' AND grade NOT IN ('F', NULL)";
+            		$sql = "SELECT * FROM take WHERE student_id = '$uId' AND course_id = '$prereqId' AND (grade <> 'F' OR grade IS NULL)";
             		$result = $conn->query($sql);
             		if ($result->num_rows == 0) {
             			return false; //User has not passed a prerequisite
