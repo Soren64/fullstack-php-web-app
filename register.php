@@ -6,7 +6,6 @@
     if(isset($_POST["submit"])){
         $name = $_POST["name"];
         $student_id = $_POST["studentid"];
-        //$username = $_POST["username"];
         $email = $_POST["email"];
         $dept = $_POST["dept"];
         $password = $_POST["password"];
@@ -14,24 +13,17 @@
         $duplicate = mysqli_query($connection, "SELECT * FROM account WHERE email = '$email'");
         if(mysqli_num_rows($duplicate) > 0){
             echo '<div class="alert">' . 'Email is already taken' . '</div>';
-            //echo "<script> alert('Email is already taken'); </script>";
         }
         else {
             if($password == $confirmPassword){
                 $accountQuery = "INSERT INTO account VALUES('$email','$password','student')";
                 mysqli_query($connection, $accountQuery);
-                //$query = "INSERT INTO login VALUES('$student_id','$name','$username','$email','$password')";
-                //mysqli_query($connection, $query);
-                //$deptQuery = "INSERT INTO department VALUES('$dept','')";
                 $studentQuery = "INSERT INTO student VALUES('$student_id','$name','$email','$dept')";
-                //mysqli_query($connection, $deptQuery);
                 mysqli_query($connection, $studentQuery);
                 echo '<div class="msg">' . 'Registration successful' . '</div>';
-                //echo "<script> alert('Registration successful'); </script>";
             }
             else {
                 echo '<div class="alert">' . 'Passwords do not match' . '</div>';
-                //echo "<script> alert('Passwords do not match'); </script>";
             }
         }
     }
