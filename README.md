@@ -2,6 +2,8 @@
 
 A full-stack web application developed as part of a team project for a university Database Systems course. The app is built using PHP and MySQL and was designed to demonstrate concepts in relational database design, SQL operations, input validation, and web-based data interaction.
 
+Check out the [Phase 3 Android App project here](https://github.com/Soren64/your-android-app-repo) for the mobile implementation of the database system.
+
 ## Entity-Relationship Diagram
 
 ![ER Diagram](https://raw.githubusercontent.com/Soren64/fullstack-php-web-app/main/ER-Diagram%20.png)
