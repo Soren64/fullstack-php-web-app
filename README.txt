@@ -1,18 +1,40 @@
-Authors: Lucca Nelson, Nick Matsuda, Jack Fallon
-Group: 6
+# Database-Driven Web Application
 
-Setup: After downloading these files, move this folder into the xampp\htdocs
-    directory on your computer. Start Apache and MySQL from the XAMPP control
-    panel. Navigate to "localhost" in a web browser and open phpMyAdmin from
-    the XAMPP dashboard. Create a new database called "DB2". Click on this
-    new database, then on the "import" tab. Click on "Choose File" and select
-    the "DB2-tables.sql" file contained in this folder (which should now be
-    located in xampp/htdocs) from the dialogue box, then hit "Import" at the
-    bottom of the page.
+A full-stack web application developed as part of a team project for a university Database Systems course. The app is built using PHP and MySQL and was designed to demonstrate concepts in relational database design, SQL operations, input validation, and web-based data interaction.
 
-To Run: Go through the Setup procedure if you have not already. Start Apache
-    and MySQL from the XAMPP control panel if you have not already. Open a
-    web broser and navigate to "localhost/db2".
+## Features
 
-Note: Tasks 1-8 were implemented, but NOT tasks 9/10, which were the student 
-implemented features.
+- Implements Tasks 1–8 from the course specification.
+- Designed and imported normalized relational schemas.
+- Allows user interactions via web interface (CRUD operations, form handling).
+- Validates user input to preserve data integrity.
+- Follows a structured setup using XAMPP for local development.
+
+## Technologies Used
+
+- **Frontend**: HTML/CSS
+- **Backend**: PHP
+- **Database**: MySQL
+- **Environment**: XAMPP (Apache + MySQL)
+- **Version Control**: Git + GitHub
+
+## Setup Instructions
+
+1. Clone or download the repository.
+2. Move the folder to your `xampp/htdocs/` directory.
+3. Start **Apache** and **MySQL** via the XAMPP control panel.
+4. Open your browser and go to [localhost/phpmyadmin](http://localhost/phpmyadmin).
+5. Create a new database named `DB2`.
+6. Click on the new `DB2` database, go to the **Import** tab.
+7. Choose the `DB2-tables.sql` file and click **Import**.
+8. In your browser, navigate to: [http://localhost/db2](http://localhost/db2)
+
+## Team
+
+- **Lucca Nelson**
+- **Nick Matsuda** (this repository)
+- **Jack Fallon**
+
+## License
+
+This project was developed for educational purposes and is not licensed for production use.
