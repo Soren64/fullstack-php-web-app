@@ -4,7 +4,7 @@ A full-stack web application developed as part of a team project for a universit
 
 ## Entity-Relationship Diagram
 
-![ER Diagram](./ER-Diagram.png)
+![ER Diagram]([./ER-Diagram.png](https://github.com/Soren64/fullstack-php-web-app/blob/main/ER-Diagram%20.png))
 [View full-size ER Diagram (PDF)](./ER-Diagram.pdf)
 
 ## Features
