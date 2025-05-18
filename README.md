@@ -6,7 +6,7 @@ A full-stack web application developed as part of a team project for a universit
 
 ![ER Diagram](https://raw.githubusercontent.com/Soren64/fullstack-php-web-app/main/ER-Diagram%20.png)
 [ER Diagram PDF Download](https://raw.githubusercontent.com/Soren64/fullstack-php-web-app/main/ER-Diagram%20.pdf)
-[ER Diagram PDF View](https://github.com/Soren64/fullstack-php-web-app/blob/main/ER-Diagram.pdf)
+[ER Diagram PDF View](https://github.com/Soren64/fullstack-php-web-app/blob/main/ER-Diagram%20.pdf)
 
 ## Features
 
