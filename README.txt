@@ -2,6 +2,11 @@
 
 A full-stack web application developed as part of a team project for a university Database Systems course. The app is built using PHP and MySQL and was designed to demonstrate concepts in relational database design, SQL operations, input validation, and web-based data interaction.
 
+## Entity-Relationship Diagram
+
+![ER Diagram](./ER-Diagram.png)
+[View full-size ER Diagram (PDF)](./ER-Diagram.pdf)
+
 ## Features
 
 - Implements Tasks 1–8 from the course specification.
