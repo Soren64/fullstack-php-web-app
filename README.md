@@ -1,6 +1,6 @@
 # Database-Driven Web Application
 
-A full-stack web application developed as part of a team project for a university Database Systems course. The app is built using PHP and MySQL and was designed to demonstrate concepts in relational database design, SQL operations, input validation, and web-based data interaction.
+A full-stack web application developed as part of a team project for a university Database Systems course. The app mimics a simplified version of the university's SIS (Student Information System). The app is built using PHP and MySQL and was designed to demonstrate concepts in relational database design, SQL operations, input validation, and web-based data interaction.
 
 Check out the [Phase 3 Android App project here](https://github.com/Soren64/your-android-app-repo) for the mobile implementation of the database system.
 
@@ -13,6 +13,11 @@ Check out the [Phase 3 Android App project here](https://github.com/Soren64/your
 ## Features
 
 - Implements Tasks 1–8 from the course specification.
+    -Allow student, professor, and administration login with relevant features matching role.
+    -Able to view, add, update, and delete student records (e.g., name, major, GPA).
+    -Students can sign up for courses (provided they have the matching prequisites).
+    -Professors can assign TAs or graders for any course they are currently teaching (provided they meet the requirements- i.e. passed the course with a good grade).
+    -Students/Professors can view course history, including grades.
 - Designed and imported normalized relational schemas.
 - Allows user interactions via web interface (CRUD operations, form handling).
 - Validates user input to preserve data integrity.
